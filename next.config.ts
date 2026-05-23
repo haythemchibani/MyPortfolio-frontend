@@ -2,7 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    // ✅ Replace `domains` with `remotePatterns`
     remotePatterns: [
       {
         protocol: 'https',

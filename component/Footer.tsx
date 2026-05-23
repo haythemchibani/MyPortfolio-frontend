@@ -1,3 +1,5 @@
+'use client'
+
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
 import { portfolioData } from '@/data/portfolioData'
 
