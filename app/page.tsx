@@ -1,12 +1,12 @@
 'use client'
 
-import Hero from '@/component/Hero'
-import About from '@/component/About'
-import Skills from '@/component/Skills'
-import Projects from '@/component/Projects'
-import Experience from '@/component/Experience'
-import Education from '@/component/Education'
-import Contact from '@/component/Contact'
+import Hero from '@/components/Hero'
+import About from '@/components/About'
+import Skills from '@/components/Skills'
+import Projects from '@/components/Projects'
+import Experience from '@/components/Experience'
+import Education from '@/components/Education'
+import Contact from '@/components/Contact'
 
 export default function Home() {
   return (
