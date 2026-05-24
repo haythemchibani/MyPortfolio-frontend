@@ -27,30 +27,30 @@ const About = () => {
 
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <p className="text-light/70 text-lg leading-relaxed mb-6">{personal.profile}</p>
-            <p className="text-light/70 text-lg leading-relaxed">
+            <p className="text-white/70 text-lg leading-relaxed mb-6">{personal.profile}</p>
+            <p className="text-white/70 text-lg leading-relaxed">
               I am passionate about building modern web applications and continuously learning new technologies.
               With a strong foundation in computer systems and telecommunications, I bring a unique perspective
               to full-stack development, combining technical expertise with problem-solving skills.
             </p>
           </div>
 
-          <div className="bg-light/5 rounded-xl p-6">
+          <div className="bg-white/5 rounded-xl p-6">
             <h3 className="text-xl font-semibold mb-4 gradient-text">Personal Info</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <FiMapPin className="text-primary" />
-                <span className="text-light/70">{personal.location}</span>
+                <span className="text-white/70">{personal.location}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <FiMail className="text-primary" />
-                <a href={`mailto:${personal.email}`} className="text-light/70 hover:text-primary transition-colors">
+                <a href={`mailto:${personal.email}`} className="text-white/70 hover:text-primary transition-colors">
                   {personal.email}
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <FiPhone className="text-primary" />
-                <span className="text-light/70">{personal.phone}</span>
+                <span className="text-white/70">{personal.phone}</span>
               </div>
             </div>
           </div>

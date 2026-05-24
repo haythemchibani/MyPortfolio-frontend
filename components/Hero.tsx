@@ -26,7 +26,7 @@ const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark/95 to-primary/20">
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-black/95 to-primary/20">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop')] bg-cover bg-fixed opacity-10" />
       </div>
 
@@ -39,7 +39,7 @@ const Hero = () => {
         >
           <motion.div variants={itemVariants} className="inline-block mb-4">
             <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary p-1">
-              <div className="w-full h-full rounded-full bg-dark flex items-center justify-center">
+              <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
                 <span className="text-4xl font-bold gradient-text">HC</span>
               </div>
             </div>
@@ -49,11 +49,11 @@ const Hero = () => {
             Hi, I'm <span className="gradient-text">{personal.name.split(' ')[0]}</span>
           </motion.h1>
 
-          <motion.h2 variants={itemVariants} className="text-xl md:text-2xl text-light/80 mb-6">
+          <motion.h2 variants={itemVariants} className="text-xl md:text-2xl text-white/80 mb-6">
             {personal.title}
           </motion.h2>
 
-          <motion.p variants={itemVariants} className="max-w-2xl mx-auto text-light/60 mb-8 text-lg">
+          <motion.p variants={itemVariants} className="max-w-2xl mx-auto text-white/60 mb-8 text-lg">
             {personal.profile}
           </motion.p>
 
@@ -62,7 +62,7 @@ const Hero = () => {
               href={personal.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-light/10 rounded-full hover:bg-primary transition-colors"
+              className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -72,7 +72,7 @@ const Hero = () => {
               href={personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-light/10 rounded-full hover:bg-primary transition-colors"
+              className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -80,7 +80,7 @@ const Hero = () => {
             </motion.a>
             <motion.a
               href={`mailto:${personal.email}`}
-              className="p-3 bg-light/10 rounded-full hover:bg-primary transition-colors"
+              className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -91,7 +91,7 @@ const Hero = () => {
           <motion.div variants={itemVariants} className="flex justify-center space-x-4">
             <motion.a
               href="#contact"
-              className="px-6 py-3 bg-gradient-to-r from-primary to-secondary rounded-lg text-light font-semibold hover:shadow-lg transition-shadow"
+              className="px-6 py-3 bg-gradient-to-r from-primary to-secondary rounded-lg text-white font-semibold hover:shadow-lg transition-shadow"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -99,7 +99,7 @@ const Hero = () => {
             </motion.a>
             <motion.a
               href="#projects"
-              className="px-6 py-3 border border-light/20 rounded-lg text-light font-semibold hover:bg-light/10 transition-colors"
+              className="px-6 py-3 border border-white/20 rounded-lg text-white font-semibold hover:bg-white/10 transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -115,8 +115,8 @@ const Hero = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 1.5 }}
       >
-        <div className="w-6 h-10 border-2 border-light/30 rounded-full flex justify-center">
-          <div className="w-1 h-2 bg-light/50 rounded-full mt-2 animate-pulse" />
+        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+          <div className="w-1 h-2 bg-white/50 rounded-full mt-2 animate-pulse" />
         </div>
       </motion.div>
     </section>

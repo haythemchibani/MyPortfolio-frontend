@@ -25,7 +25,7 @@ const Skills = () => {
   }
 
   return (
-    <section id="skills" className="section-container bg-light/5">
+    <section id="skills" className="section-container bg-white/5">
       <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={containerVariants}>
         <h2 className="section-title">Technical Skills</h2>
 
@@ -34,7 +34,7 @@ const Skills = () => {
             <motion.div
               key={idx}
               variants={itemVariants}
-              className="bg-dark/50 rounded-xl p-6 border border-light/10 hover:border-primary/50 transition-colors"
+              className="bg-black/50 rounded-xl p-6 border border-white/10 hover:border-primary/50 transition-colors"
             >
               <h3 className={`text-xl font-semibold mb-4 bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
                 {category.title}
@@ -43,7 +43,7 @@ const Skills = () => {
                 {category.skills.map((skill, skillIdx) => (
                   <motion.span
                     key={skillIdx}
-                    className="px-4 py-2 bg-light/10 rounded-full text-light/80 text-sm hover:bg-primary/20 transition-colors cursor-default"
+                    className="px-4 py-2 bg-white/10 rounded-full text-white/80 text-sm hover:bg-primary/20 transition-colors cursor-default"
                     whileHover={{ scale: 1.05 }}
                   >
                     {skill}
