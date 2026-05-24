@@ -3,23 +3,32 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { useForm } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import toast, { Toaster } from 'react-hot-toast'
 import axios from 'axios'
 import { FiMail, FiUser, FiMessageSquare, FiSend } from 'react-icons/fi'
+
+// 1. Define an explicit interface for your form data fields
+interface ContactFormInput {
+  name: string;
+  email: string;
+  message: string;
+}
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
+  // 2. Pass the interface into useForm hook
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm()
+  } = useForm<ContactFormInput>()
 
-  const onSubmit = async (data) => {
+  // 3. Explicitly type the onSubmit parameter using SubmitHandler
+  const onSubmit: SubmitHandler<ContactFormInput> = async (data) => {
     setIsLoading(true)
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, data)
