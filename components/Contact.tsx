@@ -28,8 +28,9 @@ const Contact = () => {
   } = useForm<ContactFormInput>()
 
   // 3. Explicitly type the onSubmit parameter using SubmitHandler
-  const onSubmit: SubmitHandler<ContactFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<ContactFormInput> = async (data : any) => {
     setIsLoading(true)
+
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, data)
       toast.success('Message sent successfully!')
