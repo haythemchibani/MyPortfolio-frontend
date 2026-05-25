@@ -8,7 +8,6 @@ import toast, { Toaster } from 'react-hot-toast'
 import axios from 'axios'
 import { FiMail, FiUser, FiMessageSquare, FiSend } from 'react-icons/fi'
 
-// 1. Define an explicit interface for your form data fields
 interface ContactFormInput {
   name: string;
   email: string;
@@ -19,7 +18,6 @@ const Contact = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
-  // 2. Pass the interface into useForm hook
   const {
     register,
     handleSubmit,
@@ -27,16 +25,22 @@ const Contact = () => {
     formState: { errors },
   } = useForm<ContactFormInput>()
 
-  // 3. Explicitly type the onSubmit parameter using SubmitHandler
-  const onSubmit: SubmitHandler<ContactFormInput> = async (data : any) => {
+  const onSubmit: SubmitHandler<ContactFormInput> = async (data) => {
     setIsLoading(true)
 
+    // Build the clean object payload manually to eliminate the backend 'parameter manquante' error
+    const dynamicPayload = {
+      name: data.name.trim(),
+      email: data.email.trim(),
+      message: data.message.trim()
+    }
+
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, data)
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, dynamicPayload)
       toast.success('Message sent successfully!')
       reset()
     } catch (error) {
-      toast.error('Failed to send message. Please try again.')
+      toast.error('Failed to send message. Please verify all fields.')
     } finally {
       setIsLoading(false)
     }
@@ -52,53 +56,56 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="section-container bg-light/5">
+    <section id="contact" className="py-24 bg-[#181818] text-white px-6 border-t border-white/5">
       <Toaster position="top-right" />
-      <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={containerVariants}>
-        <h2 className="section-title">Get In Touch</h2>
+      <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={containerVariants} className="max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold uppercase tracking-widest text-white">Contact</h2>
+          <div className="w-12 h-1 bg-[#784cf4] mx-auto mt-4 rounded"></div>
+        </div>
 
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto bg-[#222] p-8 rounded-xl shadow-2xl border border-white/5">
           <motion.form variants={itemVariants} onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
-              <label className="block text-light/80 mb-2">Name</label>
+              <label className="block text-gray-300 font-semibold mb-2 uppercase tracking-wider text-xs">Name</label>
               <div className="relative">
-                <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-light/40" />
+                <FiUser className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
                   type="text"
                   {...register('name', { required: 'Name is required' })}
-                  className="w-full pl-10 pr-4 py-3 bg-light/10 rounded-lg border border-light/20 focus:border-primary focus:outline-none transition-colors text-light"
-                  placeholder="Your name"
+                  className="w-full pl-12 pr-4 py-4 bg-[#111] rounded-lg border border-transparent focus:border-[#784cf4] focus:outline-none transition-colors text-white"
+                  placeholder="Enter Your Name"
                 />
               </div>
               {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name.message}</p>}
             </div>
 
             <div>
-              <label className="block text-light/80 mb-2">Email</label>
+              <label className="block text-gray-300 font-semibold mb-2 uppercase tracking-wider text-xs">Email</label>
               <div className="relative">
-                <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-light/40" />
+                <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
                   type="email"
                   {...register('email', {
                     required: 'Email is required',
                     pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'Invalid email address' },
                   })}
-                  className="w-full pl-10 pr-4 py-3 bg-light/10 rounded-lg border border-light/20 focus:border-primary focus:outline-none transition-colors text-light"
-                  placeholder="your@email.com"
+                  className="w-full pl-12 pr-4 py-4 bg-[#111] rounded-lg border border-transparent focus:border-[#784cf4] focus:outline-none transition-colors text-white"
+                  placeholder="Enter Your Email"
                 />
               </div>
               {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>}
             </div>
 
             <div>
-              <label className="block text-light/80 mb-2">Message</label>
+              <label className="block text-gray-300 font-semibold mb-2 uppercase tracking-wider text-xs">Message</label>
               <div className="relative">
-                <FiMessageSquare className="absolute left-3 top-3 text-light/40" />
+                <FiMessageSquare className="absolute left-4 top-4 text-gray-400" />
                 <textarea
                   {...register('message', { required: 'Message is required' })}
-                  rows={5}
-                  className="w-full pl-10 pr-4 py-3 bg-light/10 rounded-lg border border-light/20 focus:border-primary focus:outline-none transition-colors text-light resize-none"
-                  placeholder="Your message..."
+                  rows={6}
+                  className="w-full pl-12 pr-4 py-4 bg-[#111] rounded-lg border border-transparent focus:border-[#784cf4] focus:outline-none transition-colors text-white resize-none"
+                  placeholder="Enter Your Message"
                 />
               </div>
               {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message.message}</p>}
@@ -107,11 +114,11 @@ const Contact = () => {
             <motion.button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 bg-gradient-to-r from-primary to-secondary rounded-lg text-light font-semibold flex items-center justify-center gap-2 hover:shadow-lg transition-all disabled:opacity-50"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="w-full py-4 bg-[#784cf4] rounded-lg text-white font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 hover:bg-[#633bc9] transition-all disabled:opacity-50 shadow-md"
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
             >
-              {isLoading ? 'Sending...' : <>Send Message <FiSend /></>}
+              {isLoading ? 'Sending...' : <>Submit <FiSend /></>}
             </motion.button>
           </motion.form>
         </div>

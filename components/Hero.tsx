@@ -19,104 +19,95 @@ const Hero = () => {
   }
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: { y: 0, opacity: 1 },
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-black/95 to-primary/20">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop')] bg-cover bg-fixed opacity-10" />
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#111]">
+      {/* Background Layer with Dark Low-Opacity Overlay */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop')] bg-cover bg-center bg-fixed opacity-5" />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 container mx-auto px-6 text-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="text-center"
+          className="max-w-4xl mx-auto space-y-6"
         >
-          <motion.div variants={itemVariants} className="inline-block mb-4">
-            <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-primary to-secondary p-1">
-              <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
-                <span className="text-4xl font-bold gradient-text">HC</span>
-              </div>
+          {/* Circular Branding Badge */}
+          <motion.div variants={itemVariants} className="inline-block">
+            <div className="w-24 h-24 mx-auto rounded-full bg-[#222] border-2 border-white/10 flex items-center justify-center shadow-xl">
+              <span className="text-2xl font-extrabold tracking-wider text-[#784cf4]">HC</span>
             </div>
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
-            Hi, I'm <span className="gradient-text">{personal.name.split(' ')[0]}</span>
+          <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight uppercase text-white">
+            Hey, I'm <span className="text-[#784cf4]">{personal.name}</span>
           </motion.h1>
 
-          <motion.h2 variants={itemVariants} className="text-xl md:text-2xl text-white/80 mb-6">
+          <motion.h2 variants={itemVariants} className="text-lg md:text-xl font-medium tracking-widest uppercase text-gray-400 max-w-2xl mx-auto">
             {personal.title}
           </motion.h2>
 
-          <motion.p variants={itemVariants} className="max-w-2xl mx-auto text-white/60 mb-8 text-lg">
-            {personal.profile}
+          <motion.p variants={itemVariants} className="text-gray-400 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+            A Result-Oriented Full Stack Web Developer building and managing websites and web applications that lead to the success of the overall product.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex justify-center space-x-4 mb-8">
-            <motion.a
+          {/* Social Icons Blocks */}
+          <motion.div variants={itemVariants} className="flex justify-center space-x-6 pt-2">
+            <a
               href={personal.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              className="p-3 text-white bg-[#222] border border-white/5 rounded-md hover:bg-[#784cf4] hover:text-white transition-all shadow-md"
             >
-              <FiLinkedin size={20} />
-            </motion.a>
-            <motion.a
+              <FiLinkedin size={22} />
+            </a>
+            <a
               href={personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              className="p-3 text-white bg-[#222] border border-white/5 rounded-md hover:bg-[#784cf4] hover:text-white transition-all shadow-md"
             >
-              <FiGithub size={20} />
-            </motion.a>
-            <motion.a
+              <FiGithub size={22} />
+            </a>
+            <a
               href={`mailto:${personal.email}`}
-              className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              className="p-3 text-white bg-[#222] border border-white/5 rounded-md hover:bg-[#784cf4] hover:text-white transition-all shadow-md"
             >
-              <FiMail size={20} />
-            </motion.a>
+              <FiMail size={22} />
+            </a>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex justify-center space-x-4">
-            <motion.a
+          {/* Call to Actions Blocks */}
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-6">
+            <a
+              href="#projects"
+              className="w-full sm:w-auto px-10 py-4 bg-[#784cf4] text-white font-bold uppercase tracking-widest text-sm rounded-md shadow-lg hover:bg-[#633bc9] transition-colors"
+            >
+              Projects
+            </a>
+            <a
               href="#contact"
-              className="px-6 py-3 bg-gradient-to-r from-primary to-secondary rounded-lg text-white font-semibold hover:shadow-lg transition-shadow"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="w-full sm:w-auto px-10 py-4 bg-[#222] text-white font-bold uppercase tracking-widest text-sm rounded-md border border-white/10 hover:bg-[#333] transition-colors"
             >
               Contact Me
-            </motion.a>
-            <motion.a
-              href="#projects"
-              className="px-6 py-3 border border-white/20 rounded-lg text-white font-semibold hover:bg-white/10 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View Projects
-            </motion.a>
+            </a>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Modernized Minimalist Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
+        animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 1.5 }}
       >
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-2 bg-white/50 rounded-full mt-2 animate-pulse" />
+        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
+          <div className="w-1 h-2 bg-[#784cf4] rounded-full mt-2" />
         </div>
       </motion.div>
     </section>
